@@ -1,0 +1,324 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: #0e0e0e;
+    overflow-x: hidden;
+    cursor: none; /* Hides default cursor */
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform 0.1s ease-out, background 0.3s;
+}
+
+.cursor.hover {
+    transform: scale(2);
+    background: white;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+/* Sections */
+.panel {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    scroll-snap-align: start;
+    opacity: 0;
+}
+
+/* Different Backgrounds for Each Section */
+.home { background: linear-gradient(to right, #000428, #004e92); }
+.about { background: linear-gradient(to right, #141e30, #243b55); }
+.projects { background: linear-gradient(to right, #000428, #004e92); }
+.contact { background: linear-gradient(to right, #141e30, #243b55); }
+
+h1, h2 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.scroll-btn {
+    margin-top: 20px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+/* Projects */
+.project-list {
+    display: flex;
+    gap: 20px;
+}
+
+.project {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project:hover {
+    transform: scale(1.1);
+}
+/* Hero Section */
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    margin: auto;
+}
+
+.text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.hero-image img {
+    width: 90%;
+    max-width: 400px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+    }
+
+    .hero-image img {
+        width: 70%;
+    }
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0b0c10;
+    color: white;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Gradient Backgrounds */
+.home { background: linear-gradient(to right, #1e3c72, #2a5298); }
+.about { background: linear-gradient(to right, #232526, #414345); }
+.projects { background: linear-gradient(to right, #6a11cb, #2575fc); }
+.contact { background: linear-gradient(to right, #141e30,white); }
+
+/* Project Cards */
+.project {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    cursor: pointer;
+    width: 250px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.project:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Project Popup */
+.project-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color:black;
+}
+
+/* Fix Cursor Visibility */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform 0.1s ease-out;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+/* New Background Colors */
+.home { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); }
+.about { background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b); }
+.projects { background: linear-gradient(to right, #16222a, #3a6073); }
+.contact { background: linear-gradient(to right, #000000, #434343); }
+
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #ffaf7b;
+}
+/* Contact Section */
+.contact a {
+    color: #ffaf7b; /* Change to a bright, readable color */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    color: #ff7b7b; /* Slightly lighter color on hover */
+}
+/* Resume Button in Navbar */
+.resume-btn {
+    background: #ffaf7b;
+    color: black;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+    margin-left: 20px;
+}
+
+.resume-btn:hover {
+    background: #3d17c7;
+}
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 24px;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+    color: #ffaf7b;
+}
