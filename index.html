@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishitha Bompally - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+     <!-- Navigation Bar -->
+<nav class="navbar">
+    <ul class="nav-links">
+        <div class="logo">Rishitha Bompally</div>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/rishitha-bompally-a1b933344/" target="_blank">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/RishithaBompally" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>  
+</nav>
+    <!-- Sections -->
+    <section class="panel home">
+        <div class="hero-content">
+            <div class="text">
+                <h1>Hi, I'm <span>Rishitha Bompally</span></h1>
+                <p>Frontend Developer | Java | Python | C | Web Development | Oracle Fusion HCM </p>
+                <a href="Rishitha_resume.pdf" target="_blank" class="resume-btn">View Resume</a>
+                <a href="#about" class="scroll-btn">Explore <i class="fas fa-arrow-down"></i></a>
+            </div>
+            <div class="hero-image">
+                <img src="girl-illustration.webp" alt="Cartoon girl illustration">
+            </div>
+        </div>
+       
+    </section>
+
+    <section class="panel about" id="about">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>I am a passionate Full Stack Developer with expertise in Java, Python, JavaScript, and modern web technologies.</p>
+            <p>With hands-on experience in Web development, API integration.I have worked on projects that solve real-world problems efficiently.</p>
+            <p>My journey into development started with a strong curiosity for technology. Over time, I honed my skills through various projects, including an E-Commerce Store*, a Stray Pet Adoption App, and a Student Feedback System.</p>
+            <p>Beyond coding, I enjoy learning about AI, optimizing performance, and contributing to open-source projects.</p>
+        </div>
+    </section>
+    
+
+    <section class="panel projects">
+        <h2>My Projects</h2>
+        <div class="project-list">
+            <div class="project" onclick="showProjectDetails('strayPet')">
+                <h3>Stray Pet Adoption App</h3>
+            </div>
+            <div class="project" onclick="showProjectDetails('feedbackSystem')">
+                <h3>Student Feedback System</h3>
+            </div>
+            <div class="project" onclick="showProjectDetails('ecommerce')">
+                <h3>E-Commerce Store</h3>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Project Details Popup -->
+    <div id="projectDetails" class="project-popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="projectTitle"></h2>
+            <p id="projectDescription"></p>
+            <p><strong>Technologies Used:</strong> <span id="projectTools"></span></p>
+        </div>
+    </div>
+    
+
+    <section class="panel contact" id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:bompallyrishitha@gmail.com">bompallyrishitha@gmail.com</a></p>
+        
+    </section>
+    
+</body>
+</html>
