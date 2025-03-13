@@ -46,20 +46,14 @@ gsap.utils.toArray(".panel").forEach((panel) => {
 });
 
 // Parallax Effect
-gsap.to(".home", {
-    backgroundPositionY: "50%",
-    scrollTrigger: {
-        trigger: ".home",
-        scrub: 1
-    }
-});
-
-gsap.to(".about", {
-    backgroundPositionY: "60%",
-    scrollTrigger: {
-        trigger: ".about",
-        scrub: 1
-    }
+gsap.utils.toArray([".home", ".about"]).forEach((section, i) => {
+    gsap.to(section, {
+        backgroundPositionY: `${50 + i * 10}%`,
+        scrollTrigger: {
+            trigger: section,
+            scrub: 1
+        }
+    });
 });
 // GSAP Animation for Hero Section
 gsap.from(".hero-content", {
