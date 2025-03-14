@@ -27,25 +27,31 @@ if (!isMobile) {
     if (cursor) cursor.style.display = "none";
 }
 
-// Smooth Scroll for Navigation Links
-document.querySelectorAll('.nav-links a').forEach(link => {
+// ✅ Fix: Smooth Scroll for Navigation Links (Now Works Properly)
+document.querySelectorAll('.nav-links a, .nav-links button').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
+        const targetId = this.getAttribute('href')?.substring(1) || this.dataset.target;
 
+        if (!targetId) {
+            console.warn("No target ID found for:", this);
+            return;
+        }
+
+        const targetSection = document.getElementById(targetId);
         if (targetSection) {
             window.scrollTo({
                 top: targetSection.offsetTop - 50, // Adjusting for navbar height
                 behavior: 'smooth'
             });
+        } else {
+            console.warn("Section not found:", targetId);
         }
     });
 });
 
 // GSAP Animations (Adjust for Mobile)
 gsap.registerPlugin(ScrollTrigger);
-
 const fadeInDuration = isMobile ? 0.8 : 1.5;
 
 // Fade-in effect on scroll
@@ -127,7 +133,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-// Mobile Navigation (Optional)
+// Mobile Navigation
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 
@@ -137,7 +143,7 @@ if (navToggle) {
     });
 
     // Close menu after clicking a link
-    navLinks.querySelectorAll("a").forEach(link => {
+    navLinks.querySelectorAll("a, button").forEach(link => {
         link.addEventListener("click", () => navLinks.classList.remove("active"));
     });
 }
