@@ -133,7 +133,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-// Mobile Navigation
+// Mobile Navigation (Optional)
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 
