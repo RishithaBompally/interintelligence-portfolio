@@ -1,11 +1,32 @@
-// Custom Cursor Movement
-const cursor = document.querySelector(".cursor");
+// Detect mobile devices
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-document.addEventListener("mousemove", (e) => {
-    cursor.style.left = `${e.clientX}px`;
-    cursor.style.top = `${e.clientY}px`;
-});
-// Smooth Scroll for Navigation Links
+// Custom Cursor Movement (Disable on mobile)
+const cursor = document.querySelector(".cursor");
+if (!isMobile) {
+    document.addEventListener("mousemove", (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+    });
+
+    // Hide cursor after inactivity
+    let cursorTimeout;
+    window.addEventListener("mousemove", () => {
+        cursor.style.display = "block";
+        clearTimeout(cursorTimeout);
+        cursorTimeout = setTimeout(() => cursor.style.display = "none", 2000);
+    });
+
+    // Hover Effect on Elements
+    document.querySelectorAll(".panel, .project, .scroll-btn").forEach(item => {
+        item.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+        item.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+    });
+} else {
+    // Hide cursor on mobile
+    if (cursor) cursor.style.display = "none";
+}
+
 // Smooth Scroll for Navigation Links
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', function (e) {
@@ -22,39 +43,37 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-
-// Hover Effect on Elements
-document.querySelectorAll(".panel, .project, .scroll-btn").forEach(item => {
-    item.addEventListener("mouseenter", () => cursor.classList.add("hover"));
-    item.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
-});
-
-// GSAP Animations
+// GSAP Animations (Adjust for Mobile)
 gsap.registerPlugin(ScrollTrigger);
+
+const fadeInDuration = isMobile ? 0.8 : 1.5;
 
 // Fade-in effect on scroll
 gsap.utils.toArray(".panel").forEach((panel) => {
     gsap.to(panel, {
         opacity: 1,
-        duration: 1.5,
+        duration: fadeInDuration,
         scrollTrigger: {
             trigger: panel,
-            start: "top 80%",
+            start: isMobile ? "top 90%" : "top 80%",
             toggleActions: "play none none reverse"
         }
     });
 });
 
-// Parallax Effect
-gsap.utils.toArray([".home", ".about"]).forEach((section, i) => {
-    gsap.to(section, {
-        backgroundPositionY: `${50 + i * 10}%`,
-        scrollTrigger: {
-            trigger: section,
-            scrub: 1
-        }
+// Parallax Effect Optimization (Disable for Mobile)
+if (!isMobile) {
+    gsap.utils.toArray([".home", ".about"]).forEach((section, i) => {
+        gsap.to(section, {
+            backgroundPositionY: `${50 + i * 10}%`,
+            scrollTrigger: {
+                trigger: section,
+                scrub: 1
+            }
+        });
     });
-});
+}
+
 // GSAP Animation for Hero Section
 gsap.from(".hero-content", {
     opacity: 0,
@@ -63,9 +82,7 @@ gsap.from(".hero-content", {
     ease: "power2.out"
 });
 
-window.addEventListener("scroll", () => {
-    cursor.style.display = "block"; // Ensure cursor remains visible
-});
+// Project Details Popup (Responsive)
 function showProjectDetails(project) {
     const projectDetails = {
         strayPet: {
@@ -85,6 +102,11 @@ function showProjectDetails(project) {
         }
     };
 
+    if (!projectDetails[project]) {
+        console.warn("Project not found:", project);
+        return;
+    }
+
     // Update the popup content
     document.getElementById("projectTitle").innerText = projectDetails[project].title;
     document.getElementById("projectDescription").innerText = projectDetails[project].description;
@@ -93,24 +115,29 @@ function showProjectDetails(project) {
     // Show the popup
     const popup = document.getElementById("projectDetails");
     popup.style.display = "flex";
-
-    // Delay adding event listener to prevent immediate closing
-    setTimeout(() => {
-        document.addEventListener("click", closePopupOnClickOutside);
-    }, 100);
 }
 
-function closePopup() {
-    document.getElementById("projectDetails").style.display = "none";
-    document.removeEventListener("click", closePopupOnClickOutside);
-}
-
-// Close when clicking outside the popup
-function closePopupOnClickOutside(event) {
+// Close popup when clicking outside
+document.addEventListener("click", (event) => {
     const popup = document.getElementById("projectDetails");
     const popupContent = document.querySelector(".popup-content");
 
     if (popup.style.display === "flex" && !popupContent.contains(event.target)) {
-        closePopup();
+        popup.style.display = "none";
     }
+});
+
+// Mobile Navigation (Optional)
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+if (navToggle) {
+    navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+
+    // Close menu after clicking a link
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => navLinks.classList.remove("active"));
+    });
 }
